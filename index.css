@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'robotomedium';
+    src: url('fonts/web fonts/roboto_medium_macroman/Roboto-Medium-webfont.eot');
+    src: url('fonts/web fonts/roboto_medium_macroman/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/web fonts/roboto_medium_macroman/Roboto-Medium-webfont.woff') format('woff'),
+         url('fonts/web fonts/roboto_medium_macroman/Roboto-Medium-webfont.ttf') format('truetype'),
+         url('fonts/web fonts/roboto_medium_macroman/Roboto-Medium-webfont.svg#robotoblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/web fonts/roboto_light_macroman/Roboto-Light-webfont.eot');
+    src: url('fonts/web fonts/roboto_light_macroman/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/web fonts/roboto_light_macroman/Roboto-Light-webfont.woff') format('woff'),
+         url('fonts/web fonts/roboto_light_macroman/Roboto-Light-webfont.ttf') format('truetype'),
+         url('fonts/web fonts/roboto_light_macroman/Roboto-Light-webfont.svg#robotoblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face{
+	font-family: 'raleway';
+	src: url('fonts/raleway/Raleway-Medium.ttf') format('truetype');
+}
+@font-face{
+	font-family: 'raleway-bold';
+	src: url('fonts/raleway/Raleway-Bold.ttf') format('truetype');
+}
+@font-face{
+	font-family: 'raleway-light';
+	src: url('fonts/raleway/Raleway-Light.ttf') format('truetype');
+}
+
+html, body{
+  margin: 0;
+  font-family: 'raleway', 'Arial';
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section{
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+section:nth-child(odd){
+  background: white;
+}
+
+section:nth-child(even){
+  background: rgba(23,255,175,1);
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+nav ul{
+  list-style-type: none;
+}
+
+nav ul li{
+  display: inline-block;
+  padding: 20px;
+}
+
+nav ul li:first-child{
+  padding-left: 0;
+}
+
+nav ul li:last-child{
+  padding-left: 0;
+}
+
+table{
+  width: 500px;
+  border-collapse: collapse;
+}
+
+th,td{
+  text-align: justify;
+  padding: 10px;
+}
+
+tr:nth-child(odd){
+  background-color: rgb(100, 100, 100);
+  color: white;
+}
+
+tr:nth-child(even){
+  background-color: rgb(237, 237, 237);
+}
+
+.skill{
+  text-align: left;
+  height: 20px;
+  background-color: rgb(100, 100, 100);
+}
+
+.sub-skill{
+  background-color: rgb(237, 237, 237);
+}
+
+.twenty-five{
+  width: 25%;
+}
+
+.fifty{
+  width: 50%;
+}
+
+.sixty{
+  width: 60%;
+}
+
+.eighty-five{
+  width: 80%;
+}
+
+section{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#section1, #section3{
+  display: block;
+}
+
+#section2{
+  flex-direction: column;
+  align-items: center;
+}
+
+#section2>div{
+  width: 500px;
+}
+
+#section2 h2{
+  text-align: justify;
+}
+
+#section2 p, #section2 h1{
+  text-align: left;
+}
+
+#section3 a{
+  text-decoration: underline;
+}
+
+#section3 table{
+  display: inline-block;
+}
+
+#section4{
+  display: block;
+}
+
+#section5{
+  display: block;
+}
+
+#profile{
+  width:250px;
+  border-radius: 125px;
+}
