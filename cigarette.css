@@ -1,0 +1,89 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(31, 137, 141);
+}
+
+.container{
+    width: 30vw;
+    height: 40vh;
+    min-height: 12rem;
+    min-width: 20rem;
+    font-family: "Pacifico";
+}
+
+.container > h1{
+    text-align: center;
+}
+
+#countdown{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+}
+
+.number{
+    background-color: rgb(54, 54, 54);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: .7rem;
+    border-radius: .3rem;
+    width: 2.5rem;
+}
+
+.number-digit{
+    width: 1.5rem;
+    text-align: center;
+    background-color: rgb(100, 100, 100);
+    padding: .5rem;
+    border-radius: .3rem;
+}
+
+#benefits{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+}
+
+.benefit{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: .7rem;
+    border-radius: .3rem;
+}
+
+.benefit span{
+    margin: .5vw;
+}
+
+.benefit-digit{
+    background-color: rgb(100, 100, 100);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: .7rem;
+    border-radius: .3rem;
+    width: 2.5rem;
+}
+
+.benefit-logo{
+    padding: 0;
+}
+
+.benefit-logo img{
+    min-width: 2rem;
+    max-width: 4rem;
+    min-height: 2rem;
+    max-height: 4rem;
+}
