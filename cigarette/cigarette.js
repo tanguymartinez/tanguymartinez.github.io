@@ -1,6 +1,6 @@
 var count = document.querySelector('.container:nth-child(1');
 var bene = document.querySelector('.container:nth-child(2)');
-var initial = new Date(2019, 9, 26, 9, 0, 0);
+var initial = new Date(2020, 1, 12, 15, 22, 0);
 
 let labels = ['jours', 'heures', 'min', 'sec'];
 
