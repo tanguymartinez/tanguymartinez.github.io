@@ -1,0 +1,25 @@
+#container{
+    margin: auto;
+}
+
+p.label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.links-container{
+    display: inline-block;
+}
+
+.links-container>a:first-of-type{
+    margin-left: 20px;
+}
+
+.links-container>a{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.wrapper>div:nth-of-type(2){
+    display: inline-block;
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Installation - ICOS ATC Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "dtvs2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ICOS ATC Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Datavisualization toolchain</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs1/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#data-extraction-toolchain">Data extraction toolchain</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#javascript-datavisualization-module">JavaScript datavisualization module</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Documentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../dtvs3/">JavaScript</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../dtvs4.md">Python</a>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs-js/">JavaScript module documentation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Panel Boards</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../pnb1.md">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../pnb2.md">Installation</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ICOS ATC Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Datavisualization toolchain &raquo;</li>
+        
+      
+    
+    <li>Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="installation">Installation</h1>
+<h2 id="data-extraction-toolchain">Data extraction toolchain</h2>
+<p>To install the toolchain, you have to manually run the following command once:</p>
+<p><code>python3 release.py release.zip tmp_csv_folder/ data/ nrt.sh nrt.py</code></p>
+<p>Where path have been stripped for clarity.
+Here:</p>
+<ul>
+<li><code>release.py</code> is the main entry point script.</li>
+<li><code>release.zip</code> is the release file containing csv files.</li>
+<li><code>tmp_csv_folder</code> is a folder used to extract the .zip file. It is temporary and should be empty before reunning the command.</li>
+<li><code>data</code> is the output folder. It will contain the data as JSON files alongside the <code>index.json</code> file.</li>
+<li><code>nrt.sh</code> is the output script containing the NRT extraction commands. It will be installed at a later time using cron jobs.</li>
+<li><code>nrt.py</code> is the script converting the extracted NRT data to JSON.</li>
+</ul>
+<p>You should use absolute paths. Here is an example of a working command:</p>
+<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/release.py /home/users/nrt_user/ICOS/data/NRT/ICOS_ATC_L2_L2-2019.1.zip /home/users/nrt_user/ICOS/data/NRT/release_csv/ /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.sh /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.py</code></p>
+<p>Once you have initialized the toolchain with the above command, you can either run the following command manually or install it in a cron job:</p>
+<p><code>python3 map_tree.py data/ data/index.json</code></p>
+<p>Same as before, the paths have been stripped for the sake of understanding however, they should come as absolute paths.</p>
+<p>Here is an example of a working command below:</p>
+<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/map_tree.py /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/data/NRT/data/index.json</code></p>
+<h2 id="javascript-datavisualization-module">JavaScript datavisualization module</h2>
+<p>When everything is in place, you can go ahead and install the JavaScript module. What we did was to create a root-level directory in the Drupal folder containing the module files. That way, we could create an iframe integrated in a Drupal basic page (via the source button). The <code>index.php</code> file of the module receives a trigram as a GET parameter and injects it in a <code>&lt;script&gt;</code> tag. It is in turn used in the main script to fetch the available data index.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dtvs3/" class="btn btn-neutral float-right" title="JavaScript">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../dtvs1/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../dtvs1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../dtvs3/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>JavaScript - ICOS ATC Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "JavaScript";
+    var mkdocs_page_input_path = "dtvs3.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ICOS ATC Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Datavisualization toolchain</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs1/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs2/">Installation</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Documentation</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">JavaScript</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../dtvs4.md">Python</a>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs-js/">JavaScript module documentation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Panel Boards</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../pnb1.md">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../pnb2.md">Installation</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ICOS ATC Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Documentation &raquo;</li>
+        
+      
+        
+          <li>Datavisualization toolchain &raquo;</li>
+        
+      
+    
+    <li>JavaScript</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="datavisualization-module">Datavisualization module</h1>
+<h2 id="intro">Intro</h2>
+<p>The JavaScript documentation is available on the left menu under <a href="../dtvs-js/">"JavaScript module documentation"</a>.</p>
+<p>However, the processes involved are described here.
+The modules consists of several files:</p>
+<ul>
+<li><a href="../dtvs-js/InjectorModule.Injector.html"><code>Injector.js</code></a>: A simple dependency injection module</li>
+<li><a href="../dtvs-js/FileManagerModule.html"><code>FileManager.js</code></a>: The module responsible for data fetching, storing and processing</li>
+<li><a href="../dtvs-js/ControllerModule.Controller.html"><code>Controller.js</code></a>: The interface between the Controller and the InterfaceManager</li>
+<li><a href="../dtvs-js/InterfaceManagerModule.InterfaceManager.html"><code>InterfaceManager.js</code></a>: Manages the interface and most notably the GraphManager instances</li>
+<li><a href="../dtvs-js/GraphManagerModule.GraphManager.html"><code>GraphManager.js</code></a>: Handles a single chart (mostly HighChart specific code)</li>
+<li><a href="../dtvs-js/Sparql.js.html"><code>Sparql.js</code></a>: The module for fetching the series' links</li>
+<li><code>index.php</code>: The main PHP file</li>
+<li><a href="../../src/server-front/index.css"><code>index.css</code></a>: The module stylesheet</li>
+<li><a href="../../src/server-front/index.js"><code>index.js</code></a>: The JavaScript entry point</li>
+<li><code>highcharts.js</code>: The HighCharts library</li>
+<li><code>boost.js</code>: An HighCharts addon to boost performances</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>The entry point of the JavaScript module is <code>index.js</code>. Its role is to bootstrap the application. The modules are instanciated and eventually the <code>Controller</code> is rendered, in turn triggering the fetching of the index file by the <code>FileManger</code> module.</p>
+<p>The <code>FileManager</code> fetches the JSON index file and proceeds to parse it (upon the <a href="../dtvs-js/FileManagerModule.FileManager.html#~loadIndex"><code>loadIndex</code></a> function call). It will then be able to request data at a given URL and store the result in an array.</p>
+<p>In order to do so, a linking step is executed before anything. The linkage happens in the <code>Controller</code> when it prepares the data for the interface (specifically in the <a href="../dtvs-js/ControllerModule.Controller.html#~buildInterfaceTree"><code>buildInterfaceTree</code></a> method). An identifier is created, bound to a specific link in the <code>FileManager</code> and eventually stored in the corresponding entry of said data. When the interface is being initialized, each option of the interface is associated with the identifier we just mentioned. This way, when a series is requested, when just have to pass the identifier to the <code>FileManager</code>'s <a href="../dtvs-js/FileManagerModule.FileManager.html#~retrieve"><code>retrieve</code></a> method and wait for data to be returned.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dtvs-js/" class="btn btn-neutral float-right" title="JavaScript module documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../dtvs2/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../dtvs2/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../dtvs-js/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

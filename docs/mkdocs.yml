@@ -1,0 +1,14 @@
+site_name: ICOS ATC Documentation
+nav: 
+  - Home: index.md
+  - 'Datavisualization toolchain':
+    - 'Introduction': dtvs1.md
+    - 'Installation': dtvs2.md
+    - 'Documentation' :
+      - 'JavaScript': dtvs3.md
+      - 'Python' : dtvs4.md
+    - 'JavaScript module documentation' : dtvs-js/index.html
+  - 'Panel Boards':
+    - 'Introduction': pnb1.md
+    - 'Installation': pnb2.md
+theme: readthedocs

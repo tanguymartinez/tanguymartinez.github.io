@@ -1,0 +1,12 @@
+{
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "opts": {
+        "template": "templates/default",
+        "encoding": "utf8",
+        "destination": "./out/",
+        "recurse": true,
+        "readme": "README.md"
+    }
+}

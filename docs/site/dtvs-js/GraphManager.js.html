@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: GraphManager.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: GraphManager.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The graphmanager is responsible for graphs drawing
+ * @namespace GraphManagerModule 
+ */
+
+/**
+ * @namespace GraphManager
+ * @memberof GraphManagerModule
+ */
+
+/**
+ * @typedef GraphManager
+ * @property {Function} init {@link GraphManagerModule.GraphManager~initialize}
+ * @property {Function} addSeries {@link GraphManagerModule.GraphManager~addSeries}
+ */
+
+
+/**
+ * GraphManager revealing module
+ * @memberof GraphManagerModule
+ * @inner
+ */
+export function GraphManager() {
+
+    /**
+     * The chart instance
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @type {Object}
+     */
+    var chart;
+
+    var customPropertiesKey;
+
+    var yAxisUnit = {
+        CO2: "ppm",
+        CH4: "ppb",
+        CO: "ppb"
+    };
+
+    var species;
+
+    /**
+     * Initialize
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @param {HTMLElement} target The container
+     * @param {String} s Species
+     */
+    function initialize(target, s, customProperties) {
+        species = s;
+        customPropertiesKey = customProperties;
+        /**
+         * Override the reset function, we don't need to hide the tooltips and
+         * crosshairs.
+         */
+        Highcharts.Pointer.prototype.reset = function () {
+            return undefined;
+        };
+
+        ['mousemove', 'touchmove', 'touchstart'].forEach(function (eventType) {
+            target.addEventListener(eventType, (e) => {
+
+                // Find coordinates within the chart
+                const event = chart.pointer.normalize(e);
+
+                let points = [];
+                for (let seriesIdx = 0; seriesIdx &lt; chart.series.length; seriesIdx++) {
+                    const s = chart.series[seriesIdx];
+                    if (s.points.length == 0 || event.clientX &lt; chart.plotLeft + s.points[0].plotX || event.clientX > chart.plotLeft + s.points[s.points.length - 1].plotX) {
+                        continue;
+                    }
+
+                    points.push(s.searchPoint(event, true));
+                }
+                if (points.length == 0 || points[0] == undefined) {
+                    return;
+                }
+
+                chart.tooltip.refresh(points); // Show the tooltip
+                chart.xAxis[0].drawCrosshair(e, points[0]); // Show the crosshair
+
+                Highcharts.charts.forEach((c) => {
+                    if (chart == c) {
+                        return;
+                    }
+
+                    let pointsTmp = [];
+                    c.series.forEach((s) => {
+                        let found = s.points.find((val) => val.x == points[0].x);
+                        if (found) {
+                            pointsTmp.push(s.getPoint(found));
+                        }
+                    });
+                    if (pointsTmp.length > 0) {
+                        c.tooltip.refresh(pointsTmp);
+                        c.xAxis[0].drawCrosshair(e, pointsTmp[0]);
+                    } else {
+                        c.tooltip.hide();
+                        c.xAxis[0].hideCrosshair();
+                    }
+                })
+            });
+        });
+
+        /**
+         * Synchronize zooming through the setExtremes event handler.
+         */
+        function syncExtremes(e) {
+            // var thisChart = this.chart;
+            if (e.trigger != 'syncExtremes') { // Prevent feedback loop
+                Highcharts.charts.forEach(function (chart, idx) {
+                    if (chart.xAxis[0].setExtremes) { // It is null while updating
+                        chart.xAxis[0].setExtremes(
+                            e.min || Highcharts[customPropertiesKey].absoluteMin,
+                            e.max || Highcharts[customPropertiesKey].absoluteMax,
+                            undefined,
+                            true,
+                            { trigger: 'syncExtremes' }
+                        );
+
+                        // ticks
+                        if (!chart.xAxis[0].tickPositions) {
+                            return;
+                        }
+                        chart.xAxis[0].removePlotLine(undefined);
+                        chart.xAxis[0].tickPositions.forEach((cur, idx, arr) => {
+                            chart.xAxis[0].addPlotLine({
+                                value: cur,
+                                color: '#e6e6e6',
+                                zIndex: 2,
+                                width: 1
+                            }
+                            );
+                        });
+                    }
+                });
+            }
+        }
+        chart = Highcharts.chart(target, {
+            boost: {
+                seriesThreshold: 1
+            },
+            chart: {
+                backgroundColor: "#f4f4f4",
+                type: 'line',
+                zoomType: 'x',
+                events: {
+                    load: (e) => {
+                        syncExtremes(e);
+                    },
+                    addSeries: (e) => {
+                        // BUG => series with lower timespan do not scale well
+                        // Chrome: block must be removed
+                        // Firefox: block needed
+                        var userAgent = navigator.userAgent;
+                        if (userAgent.indexOf("Firefox") > -1 &amp;&amp; (e.target.xAxis[0].min == null || e.target.xAxis[0].max == null)) {
+                            return;
+                        }
+                        var min = (e.options.data[0][0] &lt; e.target.xAxis[0].min) ? e.options.data[0][0] : e.target.xAxis[0].min;
+                        var max = (e.options.data[e.options.data.length - 1][0] > e.target.xAxis[0].max) ? e.options.data[e.options.data.length - 1][0] : e.target.xAxis[0].max;
+                        Highcharts[customPropertiesKey].absoluteMin = min;
+                        Highcharts[customPropertiesKey].absoluteMax = max;
+                        syncExtremes({
+                            min: min,
+                            max: max
+                        });
+                    },
+                    selection: (e) => {
+                        function computeTicks(min, max) {
+                            var timespan = (max - min) / (1000 * 3600 * 24);
+                            var tickInterval;
+                            var format;
+                            if (timespan > 365 * 2) {
+                                tickInterval = 1000 * 3600 * 24 * 364;
+                                format = '{value:%Y}';
+                            } else if (timespan > 31 * 2) {
+                                tickInterval = 1000 * 3600 * 24 * 32;
+                                format = '{value:%Y-%m}'
+                            } else if (timespan > 1 * 2) {
+                                tickInterval = 1000 * 3600 * 24;
+                                format = '{value:%Y-%m-%d}'
+                            } else {
+                                tickInterval = 1000 * 3600;
+                                format = '{value:%Y-%m-%d %l%p}';
+                            }
+                            return {
+                                tickInterval: tickInterval,
+                                format: format
+                            };
+                        }
+
+                        function updateTicks(ticksInfo) {
+                            Highcharts.charts.forEach(chart => {
+                                chart.update({
+                                    xAxis: {
+                                        tickInterval: ticksInfo.tickInterval,
+                                        labels: {
+                                            format: ticksInfo.format
+                                        }
+                                    }
+                                });
+                            });
+                        }
+
+                        if (!e.xAxis) { // if triggered by reset button
+                            updateTicks(computeTicks(Highcharts[customPropertiesKey].absoluteMin, Highcharts[customPropertiesKey].absoluteMax));
+                            setTimeout(function () {
+                                chart.xAxis[0].setExtremes(Highcharts[customPropertiesKey].absoluteMin, Highcharts[customPropertiesKey].absoluteMax)
+                            }, 0);
+                        } else { // if regular selection
+                            updateTicks(computeTicks(e.xAxis[0].min, e.xAxis[0].max));
+                        }
+                    },
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: "",
+            },
+            subtitle: "From various stations",
+            xAxis: {
+                title: {
+                    text: ""
+                },
+                tickInterval: 1000 * 3600 * 24 * 364,
+                type: 'datetime',
+                events: {
+                    setExtremes: syncExtremes
+                },
+                crosshair: {
+                    color: 'red',
+                    zIndex: 3
+                },
+                labels: {
+                    format: '{value:%Y}',
+                    align: 'center'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: yAxisUnit[species] ? (species + " [" + yAxisUnit[species] + "]") : "Y Unit"
+                }
+            },
+            plotOptions: {
+                series: {
+                    cropThreshold: 10,
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+                shared: true
+            },
+            series: []
+        });
+    }
+
+    /**
+     * Create new date object from decimalDate
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @param {float} decimalDate Decimal date
+     * @returns {Date}
+     */
+    function fromDecimalDate(decimalDate) {
+        let year = ~~decimalDate;
+        let remainder = decimalDate - year;
+        let isLeapYear = function (year) {
+            return year % 400 === 0 || (year % 100 !== 0 &amp;&amp; year % 4 === 0);
+        };
+        let daysInYear = (isLeapYear(year) ? 366 : 365);
+        let millis = remainder * daysInYear * 8.64E7;
+        let yearDate = new Date(year, 0, 1);
+        let date = new Date(yearDate.getTime() + millis);
+        date.setMilliseconds(Math.round(date.getMilliseconds() / 1000) * 1000);
+        return date;
+    }
+
+    /**
+     * Convert two-dimensional array to tuple array
+     *  
+     * Each tuple is a two-dimensional array consisting of 2 elements
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @param {Array.&lt;number, number>} array_2 Two-dimensional array
+     * @returns {Array.&lt;Array.&lt;number, number>>}
+     */
+    function toTuples2(array_2) {
+        return array_2.reduce(function line(acc, value, i, array) {
+            let data = parseFloat(value[1]);
+            if (i == 0 || data &lt; 0) {
+                return acc;
+            }
+            acc.push([fromDecimalDate(parseFloat(value[0])).valueOf(), data]);
+            return acc;
+        }, []);
+    }
+
+    /**
+     * Add a series to the graph
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @param {Object} s Series to add (tuple list)
+     */
+    function addSeries(s, options) {
+        let time_co2 = toTuples2(JSON.parse(s));
+        var opts = {
+            name: options.name,
+            data: time_co2,
+            color: options.color
+        }
+        chart.addSeries(opts);
+    }
+
+    /**
+     * API exposed when instantiating
+     * @memberof GraphManagerModule.GraphManager
+     * @inner
+     * @name publicAPI
+     * @type {GraphManager}
+     */
+    var publicAPI = {
+        init: initialize,
+        addSeries: addSeries,
+        getSpecies: () => species
+    };
+    return publicAPI;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="ControllerModule.html">ControllerModule</a></li><li><a href="ControllerModule.Controller.html">Controller</a></li><li><a href="FileManagerModule.html">FileManagerModule</a></li><li><a href="FileManagerModule.FileManager.html">FileManager</a></li><li><a href="FileManagerModule.FileManager.Tree.html">Tree</a></li><li><a href="GraphManagerModule.html">GraphManagerModule</a></li><li><a href="GraphManagerModule.GraphManager.html">GraphManager</a></li><li><a href="InjectorModule.html">InjectorModule</a></li><li><a href="InjectorModule.Injector.html">Injector</a></li><li><a href="InterfaceManagerModule.html">InterfaceManagerModule</a></li><li><a href="InterfaceManagerModule.InterfaceManager.html">InterfaceManager</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Apr 02 2020 07:52:03 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
