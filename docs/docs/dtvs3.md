@@ -31,5 +31,9 @@ A linking step is executed before anytihng. The linkage happens in the `Controll
 
 ### Chart management
 
-Chart management is done in the `InterfaceManager` module which contains a list of charts. The crosshairs are synchronized in the [`initialize`](dtvs-js/GraphManagerModule.GraphManager.html#~initialize) method by overriding the default mousemove, touchmove and touchstart events.
+Chart management is done in the `InterfaceManager` module which contains a list of charts. The crosshairs are synchronized in the [`initialize`](dtvs-js/GraphManagerModule.GraphManager.html#~initialize) method by overriding the default mousemove, touchmove and touchstart events. The zoom is also synchronized through the `syncExtremes` function. The rest of the customizations are contained within the properties of the chart itself. The bottom legend of each graph is updated when you zoom (see the `selection` event). For instance, if the graph is zoomed out, only years will show. If it is zoomed in at the maximum level, the day and the hour will show.
+
+### Series' links
+
+The links displayed when you load a series are queried against the ICOS Data Sparql endpoint ([API endpoint](http://meta.icos-cp.eu/), [browser-based version](https://meta.icos-cp.eu/sparqlclient)) by the [`Sparql`](dtvs-js/Sparql.js.html) module.
 

@@ -64,6 +64,14 @@
     <li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data-fetching">Data fetching</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#chart-management">Chart management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#series-links">Series' links</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -142,7 +150,12 @@ The modules consists of several files:</p>
 <h2 id="description">Description</h2>
 <p>The entry point of the JavaScript module is <code>index.js</code>. Its role is to bootstrap the application. The modules are instanciated and eventually the <code>Controller</code> is rendered, in turn triggering the fetching of the index file by the <code>FileManger</code> module.</p>
 <p>The <code>FileManager</code> fetches the JSON index file and proceeds to parse it (upon the <a href="../dtvs-js/FileManagerModule.FileManager.html#~loadIndex"><code>loadIndex</code></a> function call). It will then be able to request data at a given URL and store the result in an array.</p>
-<p>In order to do so, a linking step is executed before anything. The linkage happens in the <code>Controller</code> when it prepares the data for the interface (specifically in the <a href="../dtvs-js/ControllerModule.Controller.html#~buildInterfaceTree"><code>buildInterfaceTree</code></a> method). An identifier is created, bound to a specific link in the <code>FileManager</code> and eventually stored in the corresponding entry of said data. When the interface is being initialized, each option of the interface is associated with the identifier we just mentioned. This way, when a series is requested, when just have to pass the identifier to the <code>FileManager</code>'s <a href="../dtvs-js/FileManagerModule.FileManager.html#~retrieve"><code>retrieve</code></a> method and wait for data to be returned.</p>
+<h3 id="data-fetching">Data fetching</h3>
+<p>A linking step is executed before anytihng. The linkage happens in the <code>Controller</code> when it prepares the data for the interface (specifically in the <a href="../dtvs-js/ControllerModule.Controller.html#~buildInterfaceTree"><code>buildInterfaceTree</code></a> method). An identifier is created, bound to a specific link in the <code>FileManager</code> and eventually stored in the corresponding entry of said data. When the interface is being initialized, each option of the interface is associated with the identifier we just mentioned. This way, when a series is requested, when just have to pass the identifier to the <code>FileManager</code>'s <a href="../dtvs-js/FileManagerModule.FileManager.html#~retrieve"><code>retrieve</code></a> method and wait for data to be returned.</p>
+<h3 id="chart-management">Chart management</h3>
+<p>Chart management is done in the <code>InterfaceManager</code> module which contains a list of charts. The crosshairs are synchronized in the <a href="../dtvs-js/GraphManagerModule.GraphManager.html#~initialize"><code>initialize</code></a> method by overriding the default mousemove, touchmove and touchstart events. The zoom is also synchronized through the <code>syncExtremes</code> function. The rest of the customizations are contained within the properties of the chart itself. The bottom legend of each graph is updated when you zoom (see the <code>selection</code> event). For instance, if the graph is zoomed out, only years will show. If it is zoomed in at the maximum level, the day and the hour will show.</p>
+<h3 id="series-links">Series' links</h3>
+<p>The links displayed when you load a series are queried against the ICOS Data Sparql endpoint (<a href="http://meta.icos-cp.eu/">API endpoint</a>, <a href="https://meta.icos-cp.eu/sparqlclient">browser-based version</a>) by the <a href="../dtvs-js/Sparql.js.html"><code>Sparql</code></a> module.</p>
               
             </div>
           </div>
