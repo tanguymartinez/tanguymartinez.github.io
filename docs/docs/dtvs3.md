@@ -37,3 +37,4 @@ Chart management is done in the `InterfaceManager` module which contains a list 
 
 The links displayed when you load a series are queried against the ICOS Data Sparql endpoint ([API endpoint](http://meta.icos-cp.eu/), [browser-based version](https://meta.icos-cp.eu/sparqlclient)) by the [`Sparql`](dtvs-js/Sparql.js.html) module.
 
+
