@@ -2,22 +2,22 @@
 
 ## Intro
 
-The JavaScript documentation is available on the left menu under ["JavaScript module documentation"](dtvs-js/index.html).
-
+The JavaScript module's role is to fetch and display data as Highchart instances.
+The JavaScript code documentation is available on the left menu under ["JavaScript module documentation"](dtvs-js/index.html).
 However, the processes involved are described here.
-The modules consists of several files:
+The module consists of several files:
 
 * [`Injector.js`](dtvs-js/InjectorModule.Injector.html): A simple dependency injection module
 * [`FileManager.js`](dtvs-js/FileManagerModule.html): The module responsible for data fetching, storing and processing
 * [`Controller.js`](dtvs-js/ControllerModule.Controller.html): The interface between the Controller and the InterfaceManager
 * [`InterfaceManager.js`](dtvs-js/InterfaceManagerModule.InterfaceManager.html): Manages the interface and most notably the GraphManager instances
-* [`GraphManager.js`](dtvs-js/GraphManagerModule.GraphManager.html): Handles a single chart (mostly HighChart specific code)
+* [`GraphManager.js`](dtvs-js/GraphManagerModule.GraphManager.html): Handles a single chart (mostly Highchart specific code)
 * [`Sparql.js`](dtvs-js/Sparql.js.html): The module for fetching the series' links
 * `index.php`: The main PHP file
 * [`index.css`](../../src/server-front/index.css): The module stylesheet
 * [`index.js`](../../src/server-front/index.js): The JavaScript entry point
-* `highcharts.js`: The HighCharts library
-* `boost.js`: An HighCharts addon to boost performances
+* `highcharts.js`: The Highcharts library
+* `boost.js`: An Highcharts addon to boost performances
 
 ## Description
 

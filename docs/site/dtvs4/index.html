@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Installation - ICOS ATC Documentation</title>
+  <title>Python - ICOS ATC Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Installation";
-    var mkdocs_page_input_path = "dtvs2.md";
+    var mkdocs_page_name = "Python";
+    var mkdocs_page_input_path = "dtvs4.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -55,19 +55,19 @@
                 <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../dtvs1/">Introduction</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#data-extraction-toolchain">Data extraction toolchain</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#javascript-datavisualization-module">JavaScript datavisualization module</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs2/">Installation</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="#">Documentation</a>
-    <ul>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Documentation</a>
+    <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../dtvs3/">JavaScript</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../dtvs4/">Python</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Python</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    </ul>
                 </li>
     </ul>
                     </li>
@@ -102,11 +102,15 @@
     
       
         
+          <li>Documentation &raquo;</li>
+        
+      
+        
           <li>Datavisualization toolchain &raquo;</li>
         
       
     
-    <li>Installation</li>
+    <li>Python</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -117,29 +121,24 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installation">Installation</h1>
-<h2 id="data-extraction-toolchain">Data extraction toolchain</h2>
-<p>To install the toolchain, you have to manually run the following command once:</p>
-<p><code>python3 release.py release.zip tmp_csv_folder/ data/ nrt.sh nrt.py</code></p>
-<p>Where path have been stripped for clarity.
-Here:</p>
+                <h1 id="datavisualization-module">Datavisualization module</h1>
+<h2 id="intro">Intro</h2>
+<p>The Python module processes the initial release zip file. It uses the extracted data to:</p>
+<ol>
+<li>Generate the correct file tree to store the JSON files</li>
+<li>Store the JSON-converted extracted CSV files at the correct location in the file tree </li>
+<li>Build a shell script which extracts NRT data and then converts it to JSON (cleaning the residual CSV files)</li>
+<li>Create a JSON index file to be used by the JavaScript module</li>
+</ol>
+<p>It consists of the following files:</p>
 <ul>
-<li><code>release.py</code> is the main entry point script.</li>
-<li><code>release.zip</code> is the release file containing csv files.</li>
-<li><code>tmp_csv_folder</code> is a folder used to extract the .zip file. It is temporary and should be empty before reunning the command.</li>
-<li><code>data</code> is the output folder. It will contain the data as JSON files alongside the <code>index.json</code> file.</li>
-<li><code>nrt.sh</code> is the output script containing the NRT extraction commands. It will be installed at a later time using cron jobs.</li>
-<li><code>nrt.py</code> is the script converting the extracted NRT data to JSON.</li>
+<li><code>extract_utils.py</code>: a utility to parse a CSV extracted file</li>
+<li><code>map_tree.py</code>: maps the file tree and outputs a JSON index file</li>
+<li><code>nrt.py</code>: the script converting the extracted NRT data to JSON.</li>
+<li><code>release.py</code>: the main entry point script.</li>
+<li><code>utils.py</code>: helpers (not used currently)</li>
 </ul>
-<p>You should use absolute paths. Here is an example of a working command:</p>
-<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/release.py /home/users/nrt_user/ICOS/data/NRT/ICOS_ATC_L2_L2-2019.1.zip /home/users/nrt_user/ICOS/data/NRT/release_csv/ /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.sh /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.py</code></p>
-<p>Once you have initialized the toolchain with the above command, you can either run the following command manually or install it in a cron job:</p>
-<p><code>python3 map_tree.py data/ data/index.json</code></p>
-<p>Same as before, the paths have been stripped for the sake of understanding however, they should come as absolute paths.</p>
-<p>Here is an example of a working command below:</p>
-<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/map_tree.py /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/data/NRT/data/index.json</code></p>
-<h2 id="javascript-datavisualization-module">JavaScript datavisualization module</h2>
-<p>When everything is in place, you can go ahead and install the JavaScript module. What we did was to create a root-level directory in the Drupal folder containing the module files. That way, we could create an iframe integrated in a Drupal basic page (via the source button). The <code>index.php</code> file of the module receives a trigram as a GET parameter and injects it in a <code>&lt;script&gt;</code> tag. It is in turn used in the main script to fetch the available data index.</p>
+<h2 id="description">Description</h2>
               
             </div>
           </div>
@@ -147,10 +146,10 @@ Here:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dtvs3/" class="btn btn-neutral float-right" title="JavaScript">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../dtvs-js/" class="btn btn-neutral float-right" title="JavaScript module documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../dtvs1/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dtvs3/" class="btn btn-neutral" title="JavaScript"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -176,10 +175,10 @@ Here:</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../dtvs1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../dtvs3/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../dtvs3/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../dtvs-js/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
