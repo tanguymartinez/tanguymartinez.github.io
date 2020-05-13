@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Installation - ICOS ATC Documentation</title>
+  <title>People - ICOS ATC Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Installation";
-    var mkdocs_page_input_path = "dtvs2.md";
+    var mkdocs_page_name = "People";
+    var mkdocs_page_input_path = "people.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -52,16 +52,10 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Datavisualization toolchain</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../dtvs1/">Introduction</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#data-extraction-toolchain">Data extraction toolchain</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#javascript-datavisualization-module">JavaScript datavisualization module</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../dtvs2/">Installation</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="#">Documentation</a>
     <ul>
@@ -75,10 +69,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Website</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../pnb1/">Panelboards</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../people/">People</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">People</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
       </div>
@@ -102,11 +98,11 @@
     
       
         
-          <li>Datavisualization toolchain &raquo;</li>
+          <li>Website &raquo;</li>
         
       
     
-    <li>Installation</li>
+    <li>People</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -117,29 +113,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installation">Installation</h1>
-<h2 id="data-extraction-toolchain">Data extraction toolchain</h2>
-<p>To install the toolchain, you have to manually run the following command once:</p>
-<p><code>python3 release.py release.zip tmp_csv_folder/ data/ nrt.sh nrt.py</code></p>
-<p>Where path have been stripped for clarity.
-Here:</p>
-<ul>
-<li><code>release.py</code> is the main entry point script.</li>
-<li><code>release.zip</code> is the release file containing csv files.</li>
-<li><code>tmp_csv_folder</code> is a folder used to extract the .zip file. It is temporary and should be empty before reunning the command.</li>
-<li><code>data</code> is the output folder. It will contain the data as JSON files alongside the <code>index.json</code> file.</li>
-<li><code>nrt.sh</code> is the output script containing the NRT extraction commands. It will be installed at a later time using cron jobs.</li>
-<li><code>nrt.py</code> is the script converting the extracted NRT data to JSON.</li>
-</ul>
-<p>You should use absolute paths. Here is an example of a working command:</p>
-<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/release.py /home/users/nrt_user/ICOS/data/NRT/ICOS_ATC_L2_L2-2019.1.zip /home/users/nrt_user/ICOS/data/NRT/release_csv/ /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.sh /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/nrt.py</code></p>
-<p>Once you have initialized the toolchain with the above command, you can either run the following command manually or install it in a cron job:</p>
-<p><code>python3 map_tree.py data/ data/index.json</code></p>
-<p>Same as before, the paths have been stripped for the sake of understanding however, they should come as absolute paths.</p>
-<p>Here is an example of a working command below:</p>
-<p><code>/usr/bin/python3.6 /home/users/nrt_user/ICOS/prog/ICOS-ATC_scripts/map_tree.py /home/users/nrt_user/ICOS/data/NRT/data/ /home/users/nrt_user/ICOS/data/NRT/data/index.json</code></p>
-<h2 id="javascript-datavisualization-module">JavaScript datavisualization module</h2>
-<p>When everything is in place, you can go ahead and install the JavaScript module. What we did was to create a root-level directory in the Drupal folder containing the module files. That way, we could create an iframe integrated in a Drupal basic page (via the source button). The <code>index.php</code> file of the module receives a trigram as a GET parameter and injects it in a <code>&lt;script&gt;</code> tag. It is in turn used in the main script to fetch the available data index.</p>
+                <h1 id="people">People</h1>
+<p>The people page (<code>/people</code>) is displayed using a basic page as foundation and view blocks on top thereof. The view reponsible for these blocks is "People" (<code>people</code>). It is composed of two displays, which only differ in their respective filter criteria. You can duplicate one and change the filter to adapt to new categories.</p>
               
             </div>
           </div>
@@ -147,10 +122,8 @@ Here:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dtvs3/" class="btn btn-neutral float-right" title="JavaScript">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../dtvs1/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pnb1/" class="btn btn-neutral" title="Panelboards"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -176,10 +149,8 @@ Here:</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../dtvs1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../pnb1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../dtvs3/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
