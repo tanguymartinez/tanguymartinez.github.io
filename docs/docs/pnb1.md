@@ -12,3 +12,6 @@ Here are the views I created so far:
 ## Structure
 
 Here is how blocks and pages are arranged for a panelboard. First, an existing page is required to be able to display blocks on a page: it is the role of the panel_board view. Then come blocks restricted to specific URLs. We can see them on the block layout page accessible from the structure menu. The top-most block we added is called "List panel board tabs", which as you may have guessed is the one listed above. Since it is the submenu for a panelboard, it must be displayed before the tabs' content. Next are the tabs themselves named "Panel Board Tab: Block \[xyz\]". Each of these represents one tab.
+
+Here is the panel board mockup:
+![panel board mockup](img/icos-atc.png)
