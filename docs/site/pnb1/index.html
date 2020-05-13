@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Python - ICOS ATC Documentation</title>
+  <title>Introduction - ICOS ATC Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Python";
-    var mkdocs_page_input_path = "dtvs4.md";
+    var mkdocs_page_name = "Introduction";
+    var mkdocs_page_input_path = "pnb1.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -52,20 +52,16 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Datavisualization toolchain</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../dtvs1/">Introduction</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../dtvs2/">Installation</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Documentation</a>
-    <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="#">Documentation</a>
+    <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../dtvs3/">JavaScript</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Python</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../dtvs4/">Python</a>
                 </li>
     </ul>
                     </li>
@@ -73,8 +69,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Panel Boards</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../pnb1/">Introduction</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Introduction</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#structure">Structure</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="" href="../pnb2.md">Installation</a>
                     </li>
@@ -100,15 +100,11 @@
     
       
         
-          <li>Documentation &raquo;</li>
-        
-      
-        
-          <li>Datavisualization toolchain &raquo;</li>
+          <li>Panel Boards &raquo;</li>
         
       
     
-    <li>Python</li>
+    <li>Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -119,23 +115,16 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="datavisualization-module">Datavisualization module</h1>
-<h2 id="intro">Intro</h2>
-<p>The Python module processes the initial release zip file. It uses the extracted data to:</p>
-<ol>
-<li>Generate the correct file tree to store the JSON files</li>
-<li>Store the JSON-converted extracted CSV files at the correct location in the file tree </li>
-<li>Build a shell script which extracts NRT data and then converts it to JSON (cleaning the residual CSV files)</li>
-<li>Create a JSON index file to be used by the JavaScript module</li>
-</ol>
-<p>It consists of the following files:</p>
-<ul>
-<li><code>extract_utils.py</code>: a utility to parse a CSV extracted file</li>
-<li><code>map_tree.py</code>: maps the file tree and outputs a JSON index file</li>
-<li><code>nrt.py</code>: the script converting the extracted NRT data to JSON</li>
-<li><code>release.py</code>: the main entry point script</li>
-<li><code>utils.py</code>: helpers (not used currently)</li>
-</ul>
+                <h1 id="panelboards">Panelboards</h1>
+<p>That piece of documentation is about the panelboards (which you can access from the map or by manually entering the URL <code>[root]/panelboard/[TRIGRAM]</code>).</p>
+<p>Here are the views I created so far:
+* List instruments (list_instruments): entity reference to list instruments belonging to a station on a panelboard form
+* List panel board tabs (list_panel_board_tabs): block listing the tabs on a panel board; entity reference to find tabs in the panel board form
+* Panel Board (panel_board): the base page for the panel boards
+* Panel Board Tab (panel_board_tab): individual tab blocks
+* Panel Board Trigram Filter (panel_board_trigram_filter): used on the tab creation form to attach it to a panel board</p>
+<h2 id="structure">Structure</h2>
+<p>Here is how blocks and pages are arranged for a panelboard. First, an existing page is required to be able to display blocks on a page: it is the role of the panel_board view. Then come blocks restricted to specific URLs. We can see them on the block layout page accessible from the structure menu. The top-most block we added is called "List panel board tabs", which as you may have guessed is the one listed above. Since it is the submenu for a panelboard, it must be displayed before the tabs' content. Next are the tabs themselves named "Panel Board Tab: Block [xyz]". Each of these represents one tab.</p>
               
             </div>
           </div>
@@ -143,10 +132,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dtvs-js/" class="btn btn-neutral float-right" title="JavaScript module documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../dtvs3/" class="btn btn-neutral" title="JavaScript"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dtvs-js/" class="btn btn-neutral" title="JavaScript module documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -172,10 +159,8 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../dtvs3/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../dtvs-js/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../dtvs-js/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

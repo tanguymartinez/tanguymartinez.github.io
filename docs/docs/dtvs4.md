@@ -13,9 +13,6 @@ It consists of the following files:
 
 * `extract_utils.py`: a utility to parse a CSV extracted file
 * `map_tree.py`: maps the file tree and outputs a JSON index file
-* `nrt.py`: the script converting the extracted NRT data to JSON.
-* `release.py`: the main entry point script.
+* `nrt.py`: the script converting the extracted NRT data to JSON
+* `release.py`: the main entry point script
 * `utils.py`: helpers (not used currently)
-
-## Description
-
