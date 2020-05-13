@@ -74,6 +74,14 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#structure">Structure</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#management">Management</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-a-panelboard">Adding a panelboard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-tabs">Adding tabs</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../people/">People</a>
@@ -128,6 +136,17 @@
 <h2 id="structure">Structure</h2>
 <p>Here is the panel board mockup:</p>
 <p><img alt="panel board mockup" src="../img/icos-atc.png" /></p>
+<h2 id="management">Management</h2>
+<h3 id="adding-a-panelboard">Adding a panelboard</h3>
+<p>If you want to add a new panel board, click <code>Content-&gt;Add new-&gt;Panel board</code>. The longitude and latitude values will be used to pinpoint the station on a map. The description will be floating to the right of the map. The trigram must be unique and will be used for several purposes, including but not limited to:</p>
+<ul>
+<li>Finding the panel board from other forms such as the tabs</li>
+<li>The URL of the panelboard</li>
+<li>The datavisualization module</li>
+</ul>
+<p>The associated tabs will appear under the "tabs" title. You can check or uncheck them depending on whether or not you want each one displayed. To add tabs, see next section. The default tab is the one displayed when you first arrive on the panelboard.</p>
+<h3 id="adding-tabs">Adding tabs</h3>
+<p>To add tabs, click <code>Content-&gt;Add new-&gt;Tab ...</code>. The fields just above the markup are used to generate the images' HTML. You can fill them and then edit the HTML by hand. However, please note that every time you change the fields generating the HTML, the markup will be replaced by the newly-generated HTML. This is merely a convenience tool. The weight field can be used to order the tabs: the lower the weight, the left-most the tab will be in the tabs list. The tab name field corresponds to the text displayed in the corresponding link.</p>
               
             </div>
           </div>
