@@ -12,7 +12,6 @@ Here are the views I created so far:
 
 ## Structure
 
-
 Here is the panel board mockup:
 
 ![panel board mockup](img/icos-atc.png)
