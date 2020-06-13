@@ -1,6 +1,6 @@
 var count = document.querySelector('.container:nth-child(1');
 var bene = document.querySelector('.container:nth-child(2)');
-var initial = new Date(2020, 0, 12, 15, 22, 0);
+var initial = new Date(2020, 5, 13, 14, 04, 0);
 
 let labels = ['jours', 'heures', 'min', 'sec'];
 
@@ -81,7 +81,7 @@ var recurrent = (count_lis, benefits_lis, initial) => {
     const CIGARETTES_A_DAY = 20;
     const CIGARETTES_PER_HOUR = 20 / 24;
     const HOURS_PER_CIGARETTE = .5;
-    const EURO_PER_CIGARETTE = .415;
+    const EURO_PER_CIGARETTE = .475;
     diff = Date.now() - initial;
     const CIGARETTES = ~~(diff/(60 * 60 * 1000) * CIGARETTES_PER_HOUR);
     const HOURS_GAINED = ~~(CIGARETTES * HOURS_PER_CIGARETTE / 2);
